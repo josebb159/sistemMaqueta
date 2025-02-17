@@ -1,7 +1,7 @@
 import os
-ss
 
-# Solicitar al usuario que ingrese el nombre del modelo y del controladors
+
+# Solicitar al usuario que ingrese el nombre del modelo y del controlador
 modelo = input("Ingrese el nombre del modelo: ")
 controlador = modelo
 name_app="Omniplace"
@@ -137,8 +137,6 @@ if not os.path.exists(f"controller/{controlador}Controller.php"):
     with open(f"controller/{controlador}Controller.php", 'w') as f:
         f.write("<?php\n")
         f.write(f"include '../model/{controlador}.php';\n")
-        f.write("\n")
-        f.write("require '../vendor/autoload.php';\n")
         f.write("\n")
         f.write(f"if(isset($_POST['id'])){{\n")
         f.write(f"\t$id =  $_POST['id'];\n")
