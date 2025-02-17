@@ -1,5 +1,5 @@
 import os
-
+ss
 
 # Solicitar al usuario que ingrese el nombre del modelo y del controladors
 modelo = input("Ingrese el nombre del modelo: ")
