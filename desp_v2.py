@@ -4,7 +4,7 @@ import os
 # Solicitar al usuario que ingrese el nombre del modelo y del controlador
 modelo = input("Ingrese el nombre del modelo: ")
 controlador = modelo
-name_app="Omniplace"
+name_app="system"
 # Solicitar al usuario que ingrese los atributos y métodos de la clase
 modelo_atributos = input("Ingrese los atributos de la clase modelo (separados por comas): ").split(',')
 modelo_metodos = input("Ingrese los métodos de la clase modelo (separados por comas): ").split(',')
@@ -16,6 +16,24 @@ if not os.path.exists('model'):
     os.makedirs('model')
 if not os.path.exists('controller'):
     os.makedirs('controller')
+if not os.path.exists('sql_date_generate'):
+    os.makedirs('sql_date_generate')
+if not os.path.exists('migrates'):
+    os.makedirs('migrates')
+
+
+
+
+if not os.path.exists(f"sql_date_generate/{modelo}.py"):
+    with open(f"sql_date_generate/{modelo}.py", 'w') as f:
+        f.write("tipos_datos = {\n")
+        for atributo in modelo_atributos:
+            f.write(f"\t'{atributo}': 'varchar(100)',\n")
+        f.write("}\n")
+
+
+
+
 
 # Crear el archivo del modelo si no existe
 if not os.path.exists(f"model/{modelo}.php"):
@@ -64,7 +82,7 @@ if not os.path.exists(f"model/{modelo}.php"):
             for forane in foraneas:
                 f.write(f",':id_{forane}' => $id_{forane}")
         f.write(f'));\n')
-        f.write(f'\treturn 1;\n')
+        f.write(f'\treturn $this->conexion->lastInsertId();\n')
         f.write('\t}\n')
 
         f.write(f"\tpublic function buscar_{modelo}(){{")
@@ -137,6 +155,10 @@ if not os.path.exists(f"controller/{controlador}Controller.php"):
     with open(f"controller/{controlador}Controller.php", 'w') as f:
         f.write("<?php\n")
         f.write(f"include '../model/{controlador}.php';\n")
+        f.write(f"include '../model/notificacion.php';\n")
+        f.write("\n$n_notificacion = new notificacion();")
+
+
         f.write("\n")
         f.write(f"if(isset($_POST['id'])){{\n")
         f.write(f"\t$id =  $_POST['id'];\n")
@@ -176,7 +198,8 @@ if not os.path.exists(f"controller/{controlador}Controller.php"):
             f.write(f",${atributo}")
         f.write(",''")
         f.write(");\n")
-        f.write("\t\techo $resultado;\n")
+        f.write(f"$n_notificacion -> registrar_notificacion('Registro {controlador}', '{controlador} '.$nombre.' fue registrada', false, $_SESSION['id_usuario'], '{controlador}', $resultado);\n")
+        f.write("\t\techo 1;\n")
         f.write("\tbreak;\n")
 
         f.write("\tcase 'buscar':\n")
@@ -223,12 +246,14 @@ if not os.path.exists(f"controller/{controlador}Controller.php"):
         f.write("\tcase 'cambiar_estado':\n")
         f.write(f"\t\t$n_{controlador}  = new {controlador}();\n")
         f.write(f"\t\t$resultado = $n_{controlador}  -> cambiar_estado_{controlador}($id, $estado);\n")
+        f.write(f"$n_notificacion -> registrar_notificacion('Cambio status {controlador}', '{controlador} '.$nombre.' fue cambiado de status', false, $_SESSION['id_usuario'], '{controlador}', $resultado);\n")
         f.write('\t\techo 1;\n')
         f.write("\tbreak;\n")
 
         f.write("\tcase 'eliminar':\n")
         f.write(f"\t\t$n_{controlador}  = new {controlador}();\n")
         f.write(f"\t\t$resultado = $n_{controlador}  -> eliminar_{controlador}($id);\n")
+        f.write(f"$n_notificacion -> registrar_notificacion('{controlador} eliminada', '{controlador} '.$nombre.' fue eliminado', false, $_SESSION['id_usuario'], '{controlador}', $resultado);\n")
         f.write('\t\techo 1;\n')
         f.write("\tbreak;\n")
 
@@ -259,6 +284,7 @@ if not os.path.exists(f"controller/{controlador}Controller.php"):
         for atributo in modelo_atributos:
             f.write(f",${atributo}")
         f.write(");\n")
+        f.write(f"$n_notificacion -> registrar_notificacion('modificado {controlador}', '{controlador} '.$nombre.' fue modificado', false, $_SESSION['id_usuario'], '{controlador}', $resultado);\n")
         f.write('\t\techo 1;\n')
         f.write("\tbreak;\n")
 
@@ -507,10 +533,6 @@ else:
 if not os.path.exists(f"view/dinamic/administrador/{controlador}.php"):
     with open(f"view/dinamic/administrador/{controlador}.php", 'w') as f:
         f.write(f"<!-- view {controlador} -->\n")
-        f.write('<link href="../assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />\n')
-        f.write('<link href="../assets/libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />\n')
-        f.write('<link href="../assets/libs/datatables.net-select-bs4/css//select.bootstrap4.min.css" rel="stylesheet" type="text/css" />\n')
-        f.write('<link href="../assets/libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />\n\n')
         f.write('<div class="page-content">\n')
         f.write('\t<div class="container-fluid">\n')
         f.write('\t\t<div class="row">\n')
@@ -574,25 +596,6 @@ if not os.path.exists(f"view/dinamic/administrador/{controlador}.php"):
      
         f.write('<?php \n')
         f.write('$aditionals_js=\'\n')
-        f.write('<!-- Required datatable js -->\n')
-        f.write('<script src="../assets/libs/datatables.net/js/jquery.dataTables.min.js"></script>\n')
-        f.write('<script src="../assets/libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>\n')
-        f.write("<!-- Buttons examples -->\n")
-        f.write('<script src="../assets/libs/datatables.net-buttons/js/dataTables.buttons.min.js"></script>\n')
-        f.write('<script src="../assets/libs/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>\n')
-        f.write('<script src="../assets/libs/jszip/jszip.min.js"></script>\n')
-        f.write('<script src="../assets/libs/pdfmake/build/pdfmake.min.js"></script>\n')
-        f.write('<script src="../assets/libs/pdfmake/build/vfs_fonts.js"></script>\n')
-        f.write('<script src="../assets/libs/datatables.net-buttons/js/buttons.html5.min.js"></script>\n')
-        f.write('<script src="../assets/libs/datatables.net-buttons/js/buttons.print.min.js"></script>\n')
-        f.write('<script src="../assets/libs/datatables.net-buttons/js/buttons.colVis.min.js"></script>\n')
-        f.write('<script src="../assets/libs/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>\n')
-        f.write('<script src="../assets/libs/datatables.net-select/js/dataTables.select.min.js"></script>\n')
-        f.write('<!-- Responsive examples -->\n')
-        f.write('<script src="../assets/libs/datatables.net-responsive/js/dataTables.responsive.min.js"></script>\n')
-        f.write('<script src="../assets/libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js"></script>\n')
-        f.write('<!-- Datatable init js -->\n')
-        f.write('<script src="../assets/js/pages/datatables.init.js"></script>\n')
         f.write('\';\n')
         f.write('?>\n')
         

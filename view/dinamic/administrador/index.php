@@ -1,54 +1,8 @@
 <?php
 
 include '../model/usuario.php';
-include '../model/producto.php';
-include '../model/salida_producto.php';
-
-
-
-$estados_t =[
-    1 => 'Entrada en creación',
-    2 => 'Reposicionado',
-    3 => 'Producto abastecido',
-    4 => 'Preparando Salida',
-    5 => 'Dañado',
-    6 => 'Obsoleto',
-    7 => 'Reservado',
-    8 => 'Embalado',
-    9 => 'En espera salida',
-    10 => 'En espera de escaneo',
-    11 => 'Entregado',
-    12 => 'Devuelto',
-    13 => 'Venta',
-    14 => 'Vendido',
-    15 => 'Entregado al repartidor',
-    16 => 'Entregado al cliente'
-    ];
 
 $usuario = new usuario();
-$producto = new producto();
-$salida_producto = new salida_producto();
-
-$total_usu=$usuario->total_usuarios();
-$total_prod=$producto->total_productos();
-$total_transito=$salida_producto->total_productos_transito();
-$totla_entrega=$salida_producto->total_productos_entregados();
-
-
-$ingreso_mes = $salida_producto->ingreso_mes();
-$ingreso_anio = $salida_producto->ingreso_anio();
-$ingreso_anio_antetior = $salida_producto->ingreso_anio_anterior();
-
-//los 3 productos mas vendidos y su porcentaje
-$producto_mas_vendido = $salida_producto->tres_productos_mas_vendidos_con_porcentaje_anio();
-var_dump($producto_mas_vendido);
-
-$ingreso_semanal = $salida_producto->ingreso_semana();
-
-$actividades = $salida_producto->buscar_notificaciones();
-//$ubicaciones = $salida_producto->ubicaciones();
-
-$transacciones = $salida_producto->buscar_transacciones();
 
 ?>
 <!-- jquery.vectormap css -->

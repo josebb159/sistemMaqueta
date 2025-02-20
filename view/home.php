@@ -32,13 +32,9 @@ $list_notificacion = $n_notificacion->buscar_notificaciones();
     include 'static/dinamic_modal.php';
     ?>
 
-
-
 </head>
 
 <body data-sidebar="dark">
-
-
 
     <!-- Begin page -->
     <div id="layout-wrapper">
@@ -106,8 +102,6 @@ $list_notificacion = $n_notificacion->buscar_notificaciones();
                             </form>
                         </div>
                     </div>
-
-
 
                     <!--<div class="dropdown d-none d-lg-inline-block ms-1">
                         <button type="button" class="btn header-item noti-icon waves-effect" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -183,62 +177,66 @@ $list_notificacion = $n_notificacion->buscar_notificaciones();
                                 </div>
                             </div>
                             <div data-simplebar style="max-height: 230px;">
-                              
-                         <?php if($list_notificacion){ foreach ($list_notificacion as $key) {
-                             
-                         ?>
-                                <a href="" class="text-reset notification-item">
-                                    <div class="d-flex">
-                                        <div class="avatar-xs me-3">
-                                            <span class="avatar-title bg-success rounded-circle font-size-16">
-                                                <i class="ri-checkbox-circle-line"></i>
-                                            </span>
-                                        </div>
-                                        <div class="flex-1">
-                                            <h6 class="mt-0 mb-1"><?= $key['nombre'] ?></h6>
-                                            <div class="font-size-12 text-muted">
-                                                <p class="mb-1"><?= $key['descripcion'] ?></p>
-                                                <p class="mb-0"><i class="mdi mdi-clock-outline"></i><?= $key['fecha_registro'] ?></p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
 
-                             <?php }} else { echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; No hay notificaciones"; } ?>
-                            <div class="p-2 border-top">
-                                <div class="d-grid">
-                                    <a class="btn btn-sm btn-link font-size-14 text-center" href="home.php?view=notificaciones">
-                                        <i class="mdi mdi-arrow-right-circle me-1"></i> View More..
-                                    </a>
+                                <?php if ($list_notificacion) {
+                                    foreach ($list_notificacion as $key) {
+
+                                ?>
+                                        <a href="" class="text-reset notification-item">
+                                            <div class="d-flex">
+                                                <div class="avatar-xs me-3">
+                                                    <span class="avatar-title bg-success rounded-circle font-size-16">
+                                                        <i class="ri-checkbox-circle-line"></i>
+                                                    </span>
+                                                </div>
+                                                <div class="flex-1">
+                                                    <h6 class="mt-0 mb-1"><?= $key['nombre'] ?></h6>
+                                                    <div class="font-size-12 text-muted">
+                                                        <p class="mb-1"><?= $key['descripcion'] ?></p>
+                                                        <p class="mb-0"><i class="mdi mdi-clock-outline"></i><?= $key['fecha_registro'] ?></p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+
+                                <?php }
+                                } else {
+                                    echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; No hay notificaciones";
+                                } ?>
+                                <div class="p-2 border-top">
+                                    <div class="d-grid">
+                                        <a class="btn btn-sm btn-link font-size-14 text-center" href="home.php?view=notificaciones">
+                                            <i class="mdi mdi-arrow-right-circle me-1"></i> View More..
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="dropdown d-inline-block user-dropdown">
-                        <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <img class="rounded-circle header-profile-user" src="../assets/upload/usuario/<?= $_SESSION['img'] ?>" alt="Header Avatar">
+                        <div class="dropdown d-inline-block user-dropdown">
+                            <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <img class="rounded-circle header-profile-user" src="../assets/upload/usuario/<?= $_SESSION['img'] ?>" alt="Header Avatar">
 
-                        <span class="d-none d-xl-inline-block ms-1"><?php echo $_SESSION['nombre']; ?></span>
-                        <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
+                                <span class="d-none d-xl-inline-block ms-1"><?php echo $_SESSION['nombre']; ?></span>
+                                <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
 
-                        </button>
-                        <div class="dropdown-menu dropdown-menu-end">
-                            <!-- item-->
-                            <a class="dropdown-item" href="home.php?view=myaccount"><i class="ri-user-line align-middle me-1"></i> Configuración del Perfil</a>
-                            <!--<a class="dropdown-item" href="#"><i class="ri-wallet-2-line align-middle me-1"></i> My
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-end">
+                                <!-- item-->
+                                <a class="dropdown-item" href="home.php?view=myaccount"><i class="ri-user-line align-middle me-1"></i> Configuración del Perfil</a>
+                                <!--<a class="dropdown-item" href="#"><i class="ri-wallet-2-line align-middle me-1"></i> My
                                 Wallet</a>-->
-                            <!--<a class="dropdown-item d-block" href="#"><span class="badge bg-success float-end mt-1">11</span><i class="ri-settings-2-line align-middle me-1"></i> Settings</a>-->
-                            <!--<a class="dropdown-item" href="#"><i class="ri-lock-unlock-line align-middle me-1"></i> Lock
+                                <!--<a class="dropdown-item d-block" href="#"><span class="badge bg-success float-end mt-1">11</span><i class="ri-settings-2-line align-middle me-1"></i> Settings</a>-->
+                                <!--<a class="dropdown-item" href="#"><i class="ri-lock-unlock-line align-middle me-1"></i> Lock
                                 screen</a>-->
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item text-danger" href="home.php?view=logout"><i class="ri-shut-down-line align-middle me-1 text-danger"></i> Logout</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item text-danger" href="home.php?view=logout"><i class="ri-shut-down-line align-middle me-1 text-danger"></i> Logout</a>
+                            </div>
                         </div>
+
+
                     </div>
-
-
                 </div>
-            </div>
         </header>
 
         <!-- ========== Left Sidebar Start ========== -->
@@ -251,14 +249,11 @@ $list_notificacion = $n_notificacion->buscar_notificaciones();
             </div>
         </div>
         <!-- Left Sidebar End -->
-
-
-
         <!-- ============================================================== -->
         <!-- Start right Content here -->
         <!-- ============================================================== -->
         <div class="main-content" id="miniaresult">
-    
+
             <?php include 'dinamic_view_controller.php';
 
             ?>
@@ -293,19 +288,12 @@ $list_notificacion = $n_notificacion->buscar_notificaciones();
     <!-- Right bar overlay-->
     <div class="rightbar-overlay"></div>
 
-
-
-
-
-
-
     <?php
     // agrega el javascript
     include 'static/requerimientos_js.php';
 
     //dependencias javascript
     include 'static/dinamic_depentencias_js.php';
-
     ?>
 
 </body>

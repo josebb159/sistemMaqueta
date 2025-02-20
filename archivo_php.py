@@ -1,1 +1,1 @@
-php_files = ['acciones.php', 'api.php', 'atributos.php', 'categoria.php', 'configuracion.php', 'database.php', 'db.php', 'db_wp.php', 'envio.php', 'estados_inventario.php', 'inventario.php', 'logs.php', 'maquina.php', 'myaccount.php', 'notificaciones.php', 'producto.php', 'proveedor.php', 'salida_producto.php', 'sucursal.php', 'talla.php', 'tipo_atributo.php', 'transacciones.php', 'transporte.php', 'usuario.php']
+php_files = ['api.php', 'carro.php', 'configuracion.php', 'database.php', 'db.php', 'logs.php', 'myaccount.php', 'notificacion.php', 'test.php', 'usuario.php']

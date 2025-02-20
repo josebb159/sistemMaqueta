@@ -2,3 +2,4 @@
 model/db.php
 model/db_wp.php
 node_modules
+migrates
