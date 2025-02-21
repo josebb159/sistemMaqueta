@@ -15,7 +15,8 @@ class notificacion {
     }
 
 
-	public function registrar_notificacion($nombre, $descripcion, $visto = false, $usuario, $tabla, $id_tabla) {
+	public function registrar_notificacion($nombre, $descripcion, $visto , $usuario, $tabla, $id_tabla) {
+		$visto = false;
         $sql = "INSERT INTO `notificacion`(`nombre`, `descripcion`, `fecha_registro`, `visto`, `usuario`, `tabla`, `id_tabla`) 
                 VALUES (:nombre, :descripcion, NOW(), :visto, :usuario, :tabla, :id_tabla)";
         $reg = $this->conexion->prepare($sql);

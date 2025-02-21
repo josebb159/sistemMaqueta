@@ -154,6 +154,7 @@ else:
 if not os.path.exists(f"controller/{controlador}Controller.php"):
     with open(f"controller/{controlador}Controller.php", 'w') as f:
         f.write("<?php\n")
+        f.write(f"include 'generalErrorController.php';\n")
         f.write(f"include '../model/{controlador}.php';\n")
         f.write(f"include '../model/notificacion.php';\n")
         f.write("\n$n_notificacion = new notificacion();")
