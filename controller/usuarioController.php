@@ -1,7 +1,6 @@
 <?php
 ini_set('session.save_path', realpath(dirname($_SERVER['DOCUMENT_ROOT']) . '/tmp'));
 include '../model/usuario.php';
-include '../model/sucursal.php';
 include '../model/notificacion.php';
 
 

@@ -34,7 +34,7 @@ switch ($op) {
 			if($exist==1){
 				$resultado = $n_configuracion  -> modificar_configuracion($descripcion,$value,$descripcion,$campo);
 			}else{
-				$resultado = $n_configuracion  -> registrar_configuracion('', $value ,$descripcion,$campo,'');
+				$resultado = $n_configuracion  -> registrar_configuracion($value ,$descripcion,$campo);
 			}
 		}
 

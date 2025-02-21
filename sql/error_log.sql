@@ -1,0 +1,8 @@
+CREATE TABLE error_log (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    mensaje TEXT NOT NULL,
+    archivo VARCHAR(255) NOT NULL,
+    linea INT NOT NULL,
+    traza TEXT NOT NULL,
+    fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);

@@ -692,9 +692,9 @@ with open(direccion, "r") as archivo:
     lineas = archivo.readlines()
 
 # Agregamos la cadena en la línea 3 (índice 2 porque los índices de la lista empiezan en 0)
-lineas.insert(linea_general,"\t" +'elseif($_GET[\'view\']=="'+controlador+'"){' + "\n")
-lineas.insert(linea_general+1, "\t\t"+ "include 'dinamic/administrador/"+controlador+".php';" + "\n")
-lineas.insert(linea_general+2, "\t" '}' + "\n")
+lineas.insert(linea_general,"\t" +'"'+controlador+'" => "../'+controlador+'.php",' + "\n")
+#lineas.insert(linea_general+1, "\t\t"+ "include 'dinamic/administrador/"+controlador+".php';" + "\n")
+#lineas.insert(linea_general+2, "\t" '}' + "\n")
 lineas.insert(linea_general+3, '/*construir*/'+ "\n")
 
 

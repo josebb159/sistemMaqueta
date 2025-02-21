@@ -1,5 +1,5 @@
 <?php
-session_start();
+//session_start();
 if(isset($conect)){
 
     if($conect==1){
@@ -230,10 +230,6 @@ class usuario {
                 $_SESSION['id_usuario'] = $usuario['id'];
                 $_SESSION['img'] = $usuario['img'];
                 $_SESSION['id_rol'] = $usuario['id_rol'];
-
-                if($usuario['id_sucursal']!=""){
-                    $_SESSION['id_sucursal'] = $usuario['id_sucursal'];
-                }
 
                 $_SESSION['codigo'] = "system"; // Puedes personalizar esto si lo deseas
                 $this->rol = $usuario['id_rol'];

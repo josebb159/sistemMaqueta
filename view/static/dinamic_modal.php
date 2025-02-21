@@ -1,6 +1,6 @@
 <?php
 
-function generate_modal($name, $content, $size = 3, $id, $hiddeValues, $form) {
+function generate_modal($name, $content, $size, $id, $hiddeValues, $form) {
     $dataSize[1] = "modal-xl";
     $dataSize[2] = "modal-lg";
     $dataSize[3] = "modal-sm";

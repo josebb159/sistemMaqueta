@@ -46,7 +46,7 @@ $usuario = new usuario();
                 <div class="d-flex">
                     <div class="flex-1 overflow-hidden">
                         <p class="font-size-14 mb-2">Total de Productos</p>
-                        <h4 class="mb-0" id="comercios" style="color: white"><?= $producto->total_productos(); ?></h4>
+                        <h4 class="mb-0" id="comercios" style="color: white">0</h4>
                     </div>
                     <div class="ms-auto">
                         <i class="ri-store-2-line font-size-24"></i>
@@ -62,7 +62,7 @@ $usuario = new usuario();
                 <div class="d-flex">
                     <div class="flex-1 overflow-hidden">
                         <p class="font-size-14 mb-2">Total Productos en Transito</p>
-                        <h4 class="mb-0" id="ventas" style="color: white"><?= $salida_producto->total_productos_transito(); ?></h4>
+                        <h4 class="mb-0" id="ventas" style="color: white"> 0</h4>
                     </div>
                     <div class="ms-auto">
                         <i class="ri-truck-line font-size-24"></i> <!-- Ejemplo de icono de camión -->
@@ -78,7 +78,7 @@ $usuario = new usuario();
                 <div class="d-flex">
                     <div class="flex-1 overflow-hidden">
                         <p class="font-size-14 mb-2">Total Productos Entregados</p>
-                        <h4 class="mb-0" id="domiciliario" style="color: white"><?= $salida_producto->total_productos_entregados(); ?></h4>
+                        <h4 class="mb-0" id="domiciliario" style="color: white">0</h4>
                     </div>
                     <div class="ms-auto">
                         <i class="ri-inbox-archive-line font-size-24"></i> <!-- Ejemplo de icono de paquete -->
@@ -106,7 +106,7 @@ $usuario = new usuario();
                         <div class="row">
                             <div class="col-sm-4">
                                 <div class="d-inline-flex">
-                                    <h5 class="me-2">$<?php echo $ingreso_mes ?: 0; ?></h5>
+                                    <h5 class="me-2">$<?php echo  0; ?></h5>
                                     <div class="text-success">
                                     </div>
                                 </div>
@@ -118,7 +118,7 @@ $usuario = new usuario();
                                     <p class="mb-2 text-muted text-truncate"><i
                                             class="mdi mdi-circle text-primary font-size-10 me-1"></i> Este Año:</p>
                                     <div class="d-inline-flex">
-                                        <h5 class="mb-0 me-2">$ <?php echo $ingreso_anio ?: 0; ?></h5>
+                                        <h5 class="mb-0 me-2">$ <?php echo 0; ?></h5>
                                         <div class="text-success">
                                        
                                         </div>
@@ -131,7 +131,7 @@ $usuario = new usuario();
                                             class="mdi mdi-circle text-success font-size-10 me-1"></i> Año Anterior:
                                     </p>
                                     <div class="d-inline-flex">
-                                        <h5 class="mb-0">$ <?php echo $ingreso_anio_antetior ?: 0; ?></h5>
+                                        <h5 class="mb-0">$ <?php echo  0; ?></h5>
                                     </div>
                                 </div>
                             </div>
@@ -152,6 +152,7 @@ $usuario = new usuario();
                         <div id="donut-chart" class="apex-charts"></div>
 
                         <div class="row">
+                            <!--
                             <?php  if ($producto_mas_vendido != null){ foreach ($producto_mas_vendido as $producto){ ?>
 
                             <div class="col-4">
@@ -162,7 +163,7 @@ $usuario = new usuario();
                                 </div>
                             </div>
                             <?php }}else{ echo " &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; No hay productos vendidos";} ?>
-                         
+                         -->
                             
                         </div>
                     </div>

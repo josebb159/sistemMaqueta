@@ -12,7 +12,7 @@ class configuracion {
 	}
 
 
-	public function registrar_configuracion($id='204',$dato,$descripcion,$campo,$estado){
+	public function registrar_configuracion($dato,$descripcion,$campo){
 	$estado_defaul = 1;
 	$sql = "INSERT INTO `configuracion`(`estado`,`dato`,`descripcion`,`campo`) VALUES (:estado,:dato,:descripcion,:campo)";
 	$reg = $this->conexion->prepare($sql);
