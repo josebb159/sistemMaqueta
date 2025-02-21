@@ -695,7 +695,7 @@ with open(direccion, "r") as archivo:
 lineas.insert(linea_general,"\t" +'"'+controlador+'" => "../'+controlador+'.php",' + "\n")
 #lineas.insert(linea_general+1, "\t\t"+ "include 'dinamic/administrador/"+controlador+".php';" + "\n")
 #lineas.insert(linea_general+2, "\t" '}' + "\n")
-lineas.insert(linea_general+3, '/*construir*/'+ "\n")
+lineas.insert(linea_general+1, '/*construir*/'+ "\n")
 
 
 # Sobreescribimos el archivo con las nuevas líneas
