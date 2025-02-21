@@ -1,7 +1,8 @@
 <?php
 ini_set('session.save_path', realpath(dirname($_SERVER['DOCUMENT_ROOT']) . '/tmp'));
-include '../model/myaccount.php';
 include 'generalErrorController.php';
+include '../model/myaccount.php';
+
 session_start();
 $myaccount = new myaccount();
 
