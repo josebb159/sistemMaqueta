@@ -45,15 +45,18 @@ function color(color){
 function registrar(){
 	var datos = [
 		$("#nombre").val(),
-		$("#color").val()
+		$("#color").val(),
+		$("#url").val()
 	];
 
 	var descripcion = [
 		"nombre",
-		"color"
+		"color",
+		"url"
 	]
 
 	var campo = [
+		"text",
 		"text",
 		"text"
 	]
@@ -101,17 +104,20 @@ function registrar3(){
 		$("#correo").val(),
 		$("#contrasena").val(),
 		$("#smtp").val(),
-		$("#port").val()
+		$("#port").val(),
+		$("#to_email").val()
 	];
 
 	var descripcion = [
 		"correo",
 		"contrasena",
 		"smtp",
-		"port"
+		"port",
+		"to_email"
 	]
 
 	var campo = [
+		"text",
 		"text",
 		"text",
 		"text",
@@ -135,6 +141,7 @@ function test(){
 	var contrasena =	$("#contrasena").val();
 	var smtp =	$("#smtp").val();
 	var port =	$("#port").val();
+	var to_email =	$("#to_email").val();
 	
 
 
@@ -142,7 +149,8 @@ function test(){
 		'correo': correo,
 		'contrasena': contrasena,
 		'smtp': smtp,
-		'port': port
+		'port': port,
+		'to_email': to_email
 		
 }	,'../controller/test_email.php').then(function(result){
 	if(result=="1"){

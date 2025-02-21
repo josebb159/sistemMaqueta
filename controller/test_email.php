@@ -10,7 +10,7 @@ define('SMTP_USERNAME', $_POST['correo']);
 define('SMTP_PASSWORD', $_POST['contrasena']);
 define('FROM_EMAIL', $_POST['correo']);
 define('FROM_NAME', 'GEC');
-define('TO_EMAIL', 'desarrollojose123@gmail.com');
+define('TO_EMAIL', $_POST['to_email']);
 
 define('EMAIL_SUBJECT', 'Confirmación de Compra - Producto Vendido');
 define('EMAIL_BODY', '<h1>Gracias por tu compra</h1><p>Este es el detalle del producto vendido.</p>');

@@ -29,7 +29,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `configuracion` (
   `id_configuracion` int(11) NOT NULL,
-  `dato` varchar(30) DEFAULT NULL,
+  `dato` varchar(60) DEFAULT NULL,
   `descripcion` varchar(30) DEFAULT NULL,
   `campo` varchar(30) DEFAULT NULL,
   `fecha_registro` timestamp NOT NULL DEFAULT current_timestamp(),

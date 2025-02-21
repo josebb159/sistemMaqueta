@@ -1,5 +1,7 @@
 <?php
-//session_start();
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 if(isset($conect)){
 
     if($conect==1){
@@ -308,7 +310,7 @@ class usuario {
             foreach ($consulta as $key) {
 
                 $_SESSION['rol'] =  $key['nombre'];
-    
+             
             }
             
     
@@ -398,6 +400,40 @@ public function total_afiliados(){
 }
 
 
+public function recuperar_contrasenia($id_user){
+    $conexion = new Conexion();
+    
+    // Primer SQL para obtener el usuario
+    $sql = "SELECT * FROM usuarios WHERE id = :id AND estado = 1";
+    $reg = $conexion->prepare($sql);
+    $reg->execute(array(':id' => $id_user));
+    $usuario = $reg->fetch(PDO::FETCH_ASSOC);
+    if ($usuario) {
+        $reset_password = $this->generarCodigoAleatorio();
+
+        $sql = "UPDATE `usuarios` SET `password_reset`=:password_reset  WHERE id=:id";
+        $reg = $conexion->prepare($sql);
+        $reg->execute(array(':id' => $id_user ,':password_reset' => $reset_password));
+        
+        $correo = new Correo();
+        $datos = [
+            'usuario' => $usuario['nombre'],
+            'email' => $usuario['email'],
+            'link_recuperacion' => $_SESSION['url'].'?token='.$reset_password
+        ];
+        
+        $contenido = Correo::generarTemplate('recuperacion', $datos);
+        $correo->enviarCorreo($usuario['email'], 'Recuperación de cuenta', $contenido);
+
+    }
+
+
+
+}
+
+public function generarCodigoAleatorio($longitud = 10) {
+    return substr(bin2hex(random_bytes($longitud)), 0, $longitud);
+}
 
 
 }

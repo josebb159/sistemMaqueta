@@ -35,6 +35,12 @@
                                     value="#50a5f1">
 									</div>
 								</div>
+								<div class="col-md-6">
+									<div class="mb-6">
+										<label for="validationCustom01" class="form-label">URL</label>
+										<input type="text" class="form-control" id="url" placeholder="url" value="" required>
+									</div>
+								</div>
 							</div>
 						</div>
 						<button type="button"  class="btn btn-success waves-effect waves-light" onclick="registrar()">Guardar</button>
@@ -107,6 +113,12 @@
 										<label for="validationCustom01" class="form-label">Port</label>
 										<input type="text" class="form-control" id="port"
                                    >
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="mb-6">
+										<label for="validationCustom01" class="form-label">Enviar a</label>
+										<input type="text" class="form-control" id="to_email" placeholder="Enviar a" value="" required>
 									</div>
 								</div>
 							</div>
