@@ -788,10 +788,10 @@ with open(direccion, "r") as archivo:
     lineas = archivo.readlines()
 
 # Agregamos la cadena en la línea 3 (índice 2 porque los índices de la lista empiezan en 0)
-lineas.insert(linea_general,"\t" +'if($_GET[\'view\']=="'+controlador+'"){' + "\n")
-lineas.insert(linea_general+1, "\t\t"+ 'echo "<script src=\'../assets/js/functions/administrador/'+controlador+'.js\'></script>";' + "\n")
-lineas.insert(linea_general+2, "\t" '}' + "\n")
-lineas.insert(linea_general+3  , '/*construir*/'+ "\n")
+lineas.insert(linea_general,"\t" +'"'+controlador+'" => "'+controlador+'.js",' + "\n")
+#lineas.insert(linea_general+1, "\t\t"+ 'echo "<script src=\'../assets/js/functions/administrador/'+controlador+'.js\'></script>";' + "\n")
+#lineas.insert(linea_general+2, "\t" '}' + "\n")
+lineas.insert(linea_general+1  , '/*construir*/'+ "\n")
 
 
 # Sobreescribimos el archivo con las nuevas líneas
