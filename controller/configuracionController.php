@@ -26,6 +26,52 @@ if(isset($_POST['op'])){
 }
 
 switch ($op) {
+	case 'update_imagen':
+
+
+		if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['file'])) {
+			$targetDir = "../assets/images/";
+			$targetFile1 = $targetDir . "logo4.png"; // Guardar como logo4.png
+			$targetFile2 = $targetDir . "logo.png";  // Guardar como logo.png
+		
+			// Obtener la información del archivo subido
+			$fileTmpPath = $_FILES['file']['tmp_name'];
+			$fileType = $_FILES['file']['type'];
+		
+			// Crear una imagen en memoria desde el archivo (soporte para JPG, PNG)
+			switch ($fileType) {
+				case 'image/jpeg':
+					$image = imagecreatefromjpeg($fileTmpPath);
+					break;
+				case 'image/png':
+					$image = imagecreatefrompng($fileTmpPath);
+					break;
+				case 'image/gif':
+					$image = imagecreatefromgif($fileTmpPath);
+					break;
+				default:
+					echo json_encode(["error" => "Formato no permitido"]);
+					exit;
+			}
+		
+			if (!$image) {
+				echo json_encode(["error" => "No se pudo procesar la imagen"]);
+				exit;
+			}
+		
+			// Guardar la imagen en formato PNG
+			imagepng($image, $targetFile1, 9); // Se guarda en calidad máxima (9)
+			copy($targetFile1, $targetFile2);   // Se copia la misma imagen a logo.png
+		
+			// Liberar memoria
+			imagedestroy($image);
+		
+			echo json_encode(["success" => "Imagen guardada correctamente como PNG"]);
+		} else {
+			echo json_encode(["error" => "No se recibió ninguna imagen"]);
+		}	
+
+	break;
 	case 'registrar':
 		$n_configuracion  = new configuracion();
 		$n_notificacion = new notificacion();

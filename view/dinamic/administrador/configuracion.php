@@ -41,6 +41,12 @@
 										<input type="text" class="form-control" id="url" placeholder="url" value="" required>
 									</div>
 								</div>
+								<div class="col-md-6">
+									<div class="mb-6">
+										<label for="validationCustom01" class="form-label">URL</label>
+										<input type="file" class="form-control" id="imagenagg" required>
+									</div>
+								</div>
 							</div>
 						</div>
 						<button type="button"  class="btn btn-success waves-effect waves-light" onclick="registrar()">Guardar</button>

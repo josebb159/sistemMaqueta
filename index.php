@@ -64,9 +64,7 @@
                                                     <label class="form-label">Contraseña</label>
                                                 </div>
                                                 <div class="flex-shrink-0">
-                                                    <div class="">
-                                                        <a href="recover-password.html" class="text-muted">Olvidaste tu contraseña?</a>
-                                                    </div>
+                                                
                                                 </div>
                                             </div>
 
@@ -98,7 +96,7 @@
                                 <div class="mt-4 mt-md-5 text-center">
                                     <p class="mb-0">© <script>
                                             document.write(new Date().getFullYear())
-                                        </script> <?php echo NAME_CLIENT; ?> . Crafted with <i class="mdi mdi-heart text-danger"></i> by SP production</p>
+                                        </script> <?php echo NAME_CLIENT; ?> . Crafted with <i class="mdi mdi-heart text-danger"></i> by DBJ</p>
                                 </div>
                             </div>
                         </div>

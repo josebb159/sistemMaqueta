@@ -23,6 +23,66 @@ $(document).ready(function(){
 
 });
 
+function redimensionarImagen(file, maxWidth, maxHeight, callback) {
+    var img = new Image();
+
+    img.onload = function () {
+        var canvas = document.createElement("canvas");
+        var ctx = canvas.getContext("2d");
+
+        if (img.width > maxWidth || img.height > maxHeight) {
+            var ratio = Math.min(maxWidth / img.width, maxHeight / img.height);
+            canvas.width = img.width * ratio;
+            canvas.height = img.height * ratio;
+        } else {
+            canvas.width = img.width;
+            canvas.height = img.height;
+        }
+
+        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+
+        canvas.toBlob(
+            function (blob) {
+                let newFile = new File([blob], "imagen_convertida.png", { type: "image/png" });
+                callback(newFile);
+            },
+            "image/png"
+        );
+    };
+
+    img.src = URL.createObjectURL(file);
+}
+
+function updata_imagen() {
+    var imagenInput = document.getElementById("imagenagg");
+    var file = imagenInput.files[0];
+
+    if (!file) {
+        console.error("No se seleccionó ninguna imagen.");
+        return;
+    }
+
+    var formData = new FormData();
+
+    redimensionarImagen(file, 800, 600, function (resizedFile) {
+        formData.append("file", resizedFile, resizedFile.name);
+        formData.append("op", "update_imagen");
+
+        fetch("../controller/configuracionController.php", {
+            method: "POST",
+            body: formData
+        })
+            .then(response => response.json())
+            .then(data => {
+                console.log("Respuesta del servidor:", data);
+            })
+            .catch(error => {
+                console.error("Error al subir la imagen:", error);
+            });
+    });
+}
+
+
 function color(color){
 	$("#color").spectrum({
         showPaletteOnly: true,
@@ -43,6 +103,7 @@ function color(color){
 }
 
 function registrar(){
+	updata_imagen();
 	var datos = [
 		$("#nombre").val(),
 		$("#color").val(),
