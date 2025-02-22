@@ -263,36 +263,10 @@ switch ($op) {
            }
                
           break; 
-          case 'buscar_select_sucursal':
-
-            $n_usuario  = new sucursal();
-            $resultado = $n_usuario -> buscar_sucursal();
-        
-            ?>
-             <option value="">Seleccione</option>
-             <?php
-
-            foreach ($resultado as $key) {
-
-               ?>
-               <option value="<?php echo $key['id_sucursal']; ?>"><?php echo $key['nombre']; ?></option>
-               <?php
-
-           }
+       
                
           break; 
-          case 'buscar_select_sucursal_id':
-
-            $n_usuario  = new sucursal();
-            $resultado = $n_usuario -> buscar_sucursal_id($sucursal);
-        
-            foreach ($resultado as $key) {
-
-               ?>
-               <option value="<?php echo $key['id_sucursal']; ?>"><?php echo $key['nombre']; ?></option>
-               <?php
-
-           }
+     
                
           break; 
           case 'get_rol':
@@ -310,21 +284,7 @@ switch ($op) {
       }
 
       break;
-      case 'get_rol_gerente':
-
-         $n_usuario  = new usuario();
-         $resultado = $n_usuario->get_rol_gerente("3,4");
-   
-   
-         foreach ($resultado as $key) {
-   
-         ?>
-            <option value="<?php echo $key['id']; ?>"><?php echo $key['descripcion']; ?></option>
-   <?php
-   
-         }
-   
-         break;
+    
    
 
    case 'cambiar_estado':
@@ -341,6 +301,16 @@ switch ($op) {
       echo 1;
 
       break;
+      case 'password_reset':
+
+         $n_usuario  = new usuario();
+         $n_notificacion = new notificacion();
+         $resultado = $n_usuario->password_reset($id, $contrasena);
+      
+         $n_notificacion -> registrar_notificacion("Contraseña cambiada", "El usuario con el id ".$id." cambio su contraseña", false, $id, "usuario", $id);
+         echo 1;
+   
+         break;
    case 'eliminar':
 
 

@@ -194,7 +194,7 @@ class usuario {
     
     
     
-        public function buscar_contrasena($email){
+    public function buscar_contrasena($email){
    
         $conexion = new Conexion();
     
@@ -214,7 +214,24 @@ class usuario {
     }
     
     
+    public function recuperar_contrasenia_token($token){
+   
+        $conexion = new Conexion();
     
+        $sql = "SELECT  id FROM usuarios WHERE  password_reset='".$token."' and verify_password = 0; ";
+        $reg = $conexion->prepare($sql);
+    
+        $reg->execute();
+        $consulta =$reg->fetchAll();
+      
+        if ($consulta) {
+    
+            return $consulta;
+    
+        }else{
+            return 0;
+        }
+    }
 
 
     public function login($usuario, $contrasena) {
@@ -334,6 +351,19 @@ public function cambiar_estado_usuario($id, $estado){
 
 }
 
+public function password_reset($id, $contrasena){
+   
+    $conexion = new Conexion();
+    $estado_defaul = 1;
+    $contrasena_hash = password_hash($contrasena, PASSWORD_BCRYPT);
+    $sql = "UPDATE `usuarios` SET `contrasena`=:contrasena, `verify_password`=1 WHERE id=:id";
+    $reg = $conexion->prepare($sql);
+
+    $reg->execute(array(':id' => $id, ':contrasena' => $contrasena_hash));
+
+
+}
+
 public function eliminar_usuario($id){
    
     $conexion = new Conexion();
@@ -411,7 +441,7 @@ public function recuperar_contrasenia($id_user){
     if ($usuario) {
         $reset_password = $this->generarCodigoAleatorio();
 
-        $sql = "UPDATE `usuarios` SET `password_reset`=:password_reset  WHERE id=:id";
+        $sql = "UPDATE `usuarios` SET `password_reset`=:password_reset, `verify_password`=0  WHERE id=:id";
         $reg = $conexion->prepare($sql);
         $reg->execute(array(':id' => $id_user ,':password_reset' => $reset_password));
         
@@ -419,7 +449,7 @@ public function recuperar_contrasenia($id_user){
         $datos = [
             'usuario' => $usuario['nombre'],
             'email' => $usuario['email'],
-            'link_recuperacion' => $_SESSION['url'].'?token='.$reset_password
+            'link_recuperacion' => $_SESSION['url']."recuperar.php".'?token='.$reset_password
         ];
         
         $contenido = Correo::generarTemplate('recuperacion', $datos);
