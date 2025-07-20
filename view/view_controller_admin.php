@@ -6,7 +6,8 @@ $views = [
     "notificaciones" => "notificaciones.php",
     "myaccount" => "myaccount.php",
     "logout" => "logout.php", 
-	/*construir*/
+	"payments" => "payments.php",
+/*construir*/
 ];
 
 $view = $_GET['view'] ?? 'index';

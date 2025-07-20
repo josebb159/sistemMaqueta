@@ -57,6 +57,12 @@ if(isset($_GET['view'])){
             </a>
         </li>
        
+	<li>
+		 <a href="home.php?view=payments" class=" waves-effect <?php if($valor=="payments"){ echo "active mm-active"; } ?>">
+			<i class="fas fa-fw fa-wrench"></i>
+			<span>payments</span>
+		</a>
+	</li>
 <!--construir-->
 	<li>
     </ul>

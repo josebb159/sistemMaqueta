@@ -5,7 +5,8 @@ $scripts = [
     "logs" => "logs.js",
     "notificaciones" => "notificaciones.js",
     "myaccount" => "myaccount.js",
-	/*construir*/
+	"payments" => "payments.js",
+/*construir*/
 ];
 
 // Obtener la vista desde GET o establecer un valor por defecto

@@ -1,6 +1,7 @@
 <?php
 
-function generate_modal($name, $content, $size, $id, $hiddeValues, $form) {
+function generate_modal($name, $content, $size, $id, $hiddeValues, $form, $type) {
+
     $dataSize[1] = "modal-xl";
     $dataSize[2] = "modal-lg";
     $dataSize[3] = "modal-sm";
@@ -23,6 +24,9 @@ function generate_modal($name, $content, $size, $id, $hiddeValues, $form) {
 				
 					<div class="modal-body">
 						<div class="row">
+							<?php if($type == "edit"){  ?>
+								<input type="hidden" value="" id="id">
+							<?php } ?>	
                             <?php foreach ($content as $data) { 
                                 
                             if($data['type'] == "text" || $data['type'] == "password") {   
