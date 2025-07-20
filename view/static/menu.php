@@ -63,6 +63,18 @@ if(isset($_GET['view'])){
 			<span>payments</span>
 		</a>
 	</li>
+	<li>
+		 <a href="home.php?view=categories" class=" waves-effect <?php if($valor=="categories"){ echo "active mm-active"; } ?>">
+			<i class="fas fa-fw fa-wrench"></i>
+			<span>categories</span>
+		</a>
+	</li>
+	<li>
+		 <a href="home.php?view=subcategories" class=" waves-effect <?php if($valor=="subcategories"){ echo "active mm-active"; } ?>">
+			<i class="fas fa-fw fa-wrench"></i>
+			<span>subcategories</span>
+		</a>
+	</li>
 <!--construir-->
 	<li>
     </ul>

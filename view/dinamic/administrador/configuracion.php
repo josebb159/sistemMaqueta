@@ -138,7 +138,7 @@
 
 
 
-		<div class="row">
+		<div class="row" style="display: none;">
 			<div class="col-12">
 				<div class="card">
 					<div class="card-body">
@@ -172,23 +172,66 @@
 			<div class="col-12">
 				<div class="card">
 					<div class="card-body">
+						<h4 class="card-title">Limitaciones y costo</h4>
+							<div class="modal-body">
+							<div class="row">
+								<div class="col-md-6">
+									<div class="mb-6">
+										<label for="validationCustom01" class="form-label">Comisión (%)</label>
+										<input type="number" min="1" class="form-control" id="comision" placeholder="" value="" required>
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="mb-6">
+										<label for="validationCustom01" class="form-label">Maximo solicitudes</label>
+										<input type="number" min="1" class="form-control" id="max_solicitudes" 
+                                    >
+									</div>
+								</div>
+								<div class="col-md-6">
+									<div class="mb-6">
+										<label for="validationCustom01" class="form-label">Maximo Sub-Categorias</label>
+										<input type="number" min="1" class="form-control" id="max_sub_categorias" 
+                                    >
+									</div>
+								</div>
+								
+							</div>
+						</div>
+						<button type="button"  class="btn btn-success waves-effect waves-light" onclick="registrar6()">Guardar</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<div class="row">
+			<div class="col-12">
+				<div class="card">
+					<div class="card-body">
 						<h4 class="card-title">Notificaciones a correo</h4>
 							<div class="modal-body">
 							<div class="row">
 								<div class="col-md-6">
 									<div class="mb-6">
-										<label for="validationCustom01" class="form-label">Correo para notificacion de entrega</label>
-										<input type="email"  class="form-control" id="correo_entrega" placeholder="" value="" required>
+										<label for="validationCustom01" class="form-label">Correo para notificacion de nuevo especialista</label>
+										<input type="email"  class="form-control" id="nuevo_especialista" placeholder="" value="" required>
 									</div>
 								</div>
 								<div class="col-md-6">
 									<div class="mb-6">
-										<label for="validationCustom01" class="form-label">Correo para notificacion de venta</label>
-										<input type="email"  class="form-control" id="correo_venta" 
+										<label for="validationCustom01" class="form-label">Correo para notificacion de mala calificación</label>
+										<input type="email"  class="form-control" id="mala_calificacion" 
                                     >
 									</div>
 								</div>
-								
+								<div class="col-md-6">
+									<div class="mb-6">
+										<label for="validationCustom01" class="form-label">Correo para notificacion de servicio finalizado</label>
+										<input type="email"  class="form-control" id="servicio_finalizado" 
+                                    >
+									</div>
+								</div>
 								
 							</div>
 						</div>

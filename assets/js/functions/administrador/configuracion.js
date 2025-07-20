@@ -256,19 +256,22 @@ function registrar4(){
 
 function registrar5(){
 	var datos = [
-		$("#correo_entrega").val(),
-		$("#correo_venta").val()
+		$("#nuevo_especialista").val(),
+		$("#mala_calificacion").val(),
+		$("#servicio_finalizado").val()
 
 	];
 
 	var descripcion = [
-		"correo_entrega",
-		"correo_venta",
+		"nuevo_especialista",
+		"mala_calificacion",
+		"servicio_finalizado"
 	]
 
 	var campo = [
 		"email",
 		"email",
+		"email"
 	]
 
 	var result = function_ajax({
@@ -280,6 +283,40 @@ function registrar5(){
 	alert_success();
 	}).catch(function(error) {console.log('Error:', error);});
 }
+
+
+
+function registrar6(){
+	var datos = [
+		$("#comision").val(),
+		$("#max_solicitudes").val(),
+		$("#max_sub_categorias").val()
+
+	];
+
+	var descripcion = [
+		"comision",
+		"max_solicitudes",
+		"max_sub_categorias"
+	]
+
+	var campo = [
+		"number",
+		"number",
+		"number"
+	]
+
+	var result = function_ajax({
+		'op':'registrar',
+		'dato': datos,
+		'descripcion': descripcion,
+		'campo' : campo
+}	,'../controller/configuracionController.php').then(function(result){
+	alert_success();
+	}).catch(function(error) {console.log('Error:', error);});
+}
+
+
 
 
 function ver_registros(){

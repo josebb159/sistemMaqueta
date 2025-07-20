@@ -7,6 +7,8 @@ $views = [
     "myaccount" => "myaccount.php",
     "logout" => "logout.php", 
 	"payments" => "payments.php",
+	"categories" => "categories.php",
+	"subcategories" => "subcategories.php",
 /*construir*/
 ];
 

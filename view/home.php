@@ -172,7 +172,7 @@ $list_notificacion = $n_notificacion->buscar_notificaciones();
                                         <h6 class="m-0"> Notifications </h6>
                                     </div>
                                     <div class="col-auto">
-                                        <a href="home.php?view=notificaciones" class="small"> View All</a>
+                                        <a href="home.php?view=notificaciones" class="small"> Ver todo</a>
                                     </div>
                                 </div>
                             </div>
@@ -230,7 +230,7 @@ $list_notificacion = $n_notificacion->buscar_notificaciones();
                                 <!--<a class="dropdown-item" href="#"><i class="ri-lock-unlock-line align-middle me-1"></i> Lock
                                 screen</a>-->
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item text-danger" href="home.php?view=logout"><i class="ri-shut-down-line align-middle me-1 text-danger"></i> Logout</a>
+                                <a class="dropdown-item text-danger" href="home.php?view=logout"><i class="ri-shut-down-line align-middle me-1 text-danger"></i> Salir</a>
                             </div>
                         </div>
 

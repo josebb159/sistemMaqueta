@@ -6,6 +6,8 @@ $scripts = [
     "notificaciones" => "notificaciones.js",
     "myaccount" => "myaccount.js",
 	"payments" => "payments.js",
+	"categories" => "categories.js",
+	"subcategories" => "subcategories.js",
 /*construir*/
 ];
 
