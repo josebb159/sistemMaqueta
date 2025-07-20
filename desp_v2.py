@@ -9,7 +9,7 @@ name_app="system"
 modelo_atributos = input("Ingrese los atributos de la clase modelo (separados por comas): ").split(',')
 modelo_metodos = input("Ingrese los métodos de la clase modelo (separados por comas): ").split(',')
 foraneas = input("Ingrese las llaves foraneas (separados por comas): ").split(',')
-
+primer_atributo = modelo_atributos[0]
 
 # Crear las carpetas si no existen
 if not os.path.exists('model'):
@@ -53,13 +53,25 @@ if not os.path.exists(f"model/{modelo}.php"):
 
         f.write("\n\n")
       
-        f.write(f"\tpublic function registrar_{modelo}($id='204',")
+        params = []
+
+        # Agrega las foráneas si existen
         if foraneas[0] != '':
             for forane in foraneas:
-                f.write(f"$id_{forane},")
+                params.append(f"$id_{forane}")
+
+        # Agrega los atributos del modelo
         for atributo in modelo_atributos:
-            f.write(f"${atributo},")
-        f.write("$estado){\n")
+            params.append(f"${atributo}")
+
+
+        # Une los parámetros con coma
+        params_str = ', '.join(params)
+
+        # Escribe la línea de la función
+        f.write(f"\tpublic function registrar_{modelo}({params_str}){{\n")
+
+
         f.write(f'\t$estado_defaul = 1;\n')
         f.write(f'\t$sql = "INSERT INTO `{modelo}`(`estado`')
         for atributo in modelo_atributos:
@@ -115,9 +127,15 @@ if not os.path.exists(f"model/{modelo}.php"):
         for atributo in modelo_atributos:
             f.write(f",${atributo}")
         f.write("){\n")
-        f.write(f'\t$sql = "UPDATE `{modelo}` SET  ')
-        for atributo in modelo_atributos:
-            f.write(f",`{atributo}`=:{atributo}")
+        
+        set_clauses = [f"`{atributo}`=:{atributo}" for atributo in modelo_atributos]
+
+        # Une con coma y espacio
+        set_clause_str = ', '.join(set_clauses)
+
+        # Escribe la línea completa en el archivo
+        f.write(f'\t$sql = "UPDATE `{modelo}` SET {set_clause_str} ')
+
         if foraneas[0] != '':
             for forane in foraneas:
                 f.write(f",`id_{forane}`=:id_{forane}")
@@ -158,6 +176,7 @@ if not os.path.exists(f"controller/{controlador}Controller.php"):
         f.write(f"include '../model/{controlador}.php';\n")
         f.write(f"include '../model/notificacion.php';\n")
         f.write("\n$n_notificacion = new notificacion();")
+        f.write("\nsession_start();")
 
 
         f.write("\n")
@@ -188,18 +207,31 @@ if not os.path.exists(f"controller/{controlador}Controller.php"):
         f.write("}\n")
         f.write("\n")
         f.write("switch ($op) {\n")
-
         f.write("\tcase 'registrar':\n")
         f.write(f"\t\t$n_{controlador}  = new {controlador}();\n")
-        f.write(f"\t\t$resultado = $n_{controlador}  -> registrar_{controlador}(''")
+        args = []
+
+        # Si hay claves foráneas, agrégalas primero
         if foraneas[0] != '':
             for forane in foraneas:
-                f.write(f",$id_{forane}")
+                args.append(f"$id_{forane}")
+
+        # Agrega los atributos del modelo
         for atributo in modelo_atributos:
-            f.write(f",${atributo}")
-        f.write(",''")
-        f.write(");\n")
-        f.write(f"$n_notificacion -> registrar_notificacion('Registro {controlador}', '{controlador} '.$nombre.' fue registrada', false, $_SESSION['id_usuario'], '{controlador}', $resultado);\n")
+            args.append(f"${atributo}")
+
+        # Si necesitas agregar un '' al final, hazlo aquí solo si es necesario
+        # args.append("''")  # Solo si tu función necesita ese último argumento vacío
+
+        # Une todos los argumentos con coma y espacio
+        args_str = ', '.join(args)
+
+        # Escribe la línea completa
+        f.write(f"\t\t$resultado = $n_{controlador} -> registrar_{controlador}({args_str});\n")
+
+
+
+        f.write(f"$n_notificacion -> registrar_notificacion('Registro {controlador}', '{controlador} '.${primer_atributo}.' fue registrada', false, $_SESSION['id_usuario'], '{controlador}', '{primer_atributo}');\n")
         f.write("\t\techo 1;\n")
         f.write("\tbreak;\n")
 
@@ -247,14 +279,14 @@ if not os.path.exists(f"controller/{controlador}Controller.php"):
         f.write("\tcase 'cambiar_estado':\n")
         f.write(f"\t\t$n_{controlador}  = new {controlador}();\n")
         f.write(f"\t\t$resultado = $n_{controlador}  -> cambiar_estado_{controlador}($id, $estado);\n")
-        f.write(f"$n_notificacion -> registrar_notificacion('Cambio status {controlador}', '{controlador} '.$nombre.' fue cambiado de status', false, $_SESSION['id_usuario'], '{controlador}', $resultado);\n")
+        f.write(f"$n_notificacion -> registrar_notificacion('Cambio status {controlador}', '{controlador} '.$id.' fue cambiado de status', false, $_SESSION['id_usuario'], '{controlador}', $id);\n")
         f.write('\t\techo 1;\n')
         f.write("\tbreak;\n")
 
         f.write("\tcase 'eliminar':\n")
         f.write(f"\t\t$n_{controlador}  = new {controlador}();\n")
         f.write(f"\t\t$resultado = $n_{controlador}  -> eliminar_{controlador}($id);\n")
-        f.write(f"$n_notificacion -> registrar_notificacion('{controlador} eliminada', '{controlador} '.$nombre.' fue eliminado', false, $_SESSION['id_usuario'], '{controlador}', $resultado);\n")
+        f.write(f"$n_notificacion -> registrar_notificacion('{controlador} eliminada', '{controlador} '.$id.' fue eliminado', false, $_SESSION['id_usuario'], '{controlador}', $id);\n")
         f.write('\t\techo 1;\n')
         f.write("\tbreak;\n")
 
@@ -285,7 +317,7 @@ if not os.path.exists(f"controller/{controlador}Controller.php"):
         for atributo in modelo_atributos:
             f.write(f",${atributo}")
         f.write(");\n")
-        f.write(f"$n_notificacion -> registrar_notificacion('modificado {controlador}', '{controlador} '.$nombre.' fue modificado', false, $_SESSION['id_usuario'], '{controlador}', $resultado);\n")
+        f.write(f"$n_notificacion -> registrar_notificacion('modificado {controlador}', '{controlador} '.${primer_atributo}.' fue modificado', false, $_SESSION['id_usuario'], '{controlador}', $id);\n")
         f.write('\t\techo 1;\n')
         f.write("\tbreak;\n")
 
@@ -422,7 +454,7 @@ if not os.path.exists(f"assets/js/functions/administrador/{controlador}.js"):
 
 
         f.write("function modificar(){\n")
-        f.write(f"\tvar id =  $(\"#id_{controlador}\").val();\n")
+        f.write(f"\tvar id =  $(\"#id\").val();\n")
         if foraneas[0] != '':
             for forane in foraneas:
                 f.write(f"\tvar {forane} =  $(\"#id_{forane}\").val();\n")
@@ -582,13 +614,13 @@ if not os.path.exists(f"view/dinamic/administrador/{controlador}.php"):
         f.write('\t];\n\n')
         f.write('\t$hiddesData = [];\n')
 
-        f.write(f'\tgenerate_modal("Agregar {controlador}",$datas , 2, "modal_agregar", $hiddesData, "form_1");\n\n')
+        f.write(f'\tgenerate_modal("Agregar {controlador}",$datas , 2, "modal_agregar", $hiddesData, "form_1", "new");\n\n')
         f.write('\t$datas = [\n')
         for atributo in modelo_atributos:
             f.write(f'\t\t\t["type"=>"text","name"=>"{atributo}","id"=>"{atributo}","col"=>"6","required"=>"required", "action"=>"", "display"=>"block"],\n')
         f.write('\t];\n\n')
         f.write('\t$hiddesData = ["id_inventario"];\n')
-        f.write(f'\tgenerate_modal("Modificar {controlador}",$datas , 2, "myModal", $hiddesData, "form_2");\n\n')
+        f.write(f'\tgenerate_modal("Modificar {controlador}",$datas , 2, "myModal", $hiddesData, "form_2", "edit");\n\n')
         f.write('?>\n')
 
 
@@ -693,7 +725,7 @@ with open(direccion, "r") as archivo:
     lineas = archivo.readlines()
 
 # Agregamos la cadena en la línea 3 (índice 2 porque los índices de la lista empiezan en 0)
-lineas.insert(linea_general,"\t" +'"'+controlador+'" => "../'+controlador+'.php",' + "\n")
+lineas.insert(linea_general,"\t" +'"'+controlador+'" => "'+controlador+'.php",' + "\n")
 #lineas.insert(linea_general+1, "\t\t"+ "include 'dinamic/administrador/"+controlador+".php';" + "\n")
 #lineas.insert(linea_general+2, "\t" '}' + "\n")
 lineas.insert(linea_general+1, '/*construir*/'+ "\n")
