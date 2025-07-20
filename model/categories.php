@@ -47,7 +47,7 @@ class categories {
 	return json_encode($results);
 	}
 	public function test() {
-		// Código del método aquí
+		// Cï¿½digo del mï¿½todo aquï¿½
 	}
 
 }

@@ -28,6 +28,16 @@ class subcategories {
 	}else{
 		return 0;
 	} }
+
+	public function buscar_subcategories_id($id){$sql = "SELECT  * FROM subcategories where id_subcategories=".$id."";
+	$reg = $this->conexion->prepare($sql);
+	$reg->execute();
+	$consulta =$reg->fetchAll();
+	if ($consulta) {
+		return $consulta;
+	}else{
+		return 0;
+	} }
 	public function cambiar_estado_subcategories($id, $estado){$sql = "UPDATE `subcategories` SET `estado`=:estado WHERE id_subcategories=:id";
 	$reg = $this->conexion->prepare($sql);
 	$reg->execute(array(':id' => $id, ':estado' => $estado));
@@ -48,7 +58,7 @@ class subcategories {
 	return json_encode($results);
 	}
 	public function test() {
-		// Código del método aquí
+		// Cï¿½digo del mï¿½todo aquï¿½
 	}
 
 }

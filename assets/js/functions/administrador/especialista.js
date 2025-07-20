@@ -5,19 +5,35 @@ $(document).ready(function(){
 function registrar(){
 	var result = function_ajax({
 		'op':'registrar',
-		'id_categories': $("#id_categoriesagg").val(),
-		'nombre': $("#nombreagg").val(),
-		'description': $("#descriptionagg").val(),
-		'valor_min': $("#valor_minagg").val(),
+		'id_usuarios': $("#id_usuariosagg").val(),
+		'foto': $("#fotoagg").val(),
+		'nombre_completo': $("#nombre_completoagg").val(),
+		'telefono': $("#telefonoagg").val(),
+		'correo': $("#correoagg").val(),
+		'categories_selected': $("#categories_selectedagg").val(),
+		'anio_experiencia': $("#anio_experienciaagg").val(),
+		'metodos_pago': $("#metodos_pagoagg").val(),
+		'cartera': $("#carteraagg").val(),
+		'antecedentes': $("#antecedentesagg").val(),
+		'cedula_frontal': $("#cedula_frontalagg").val(),
+		'cedula_trasera': $("#cedula_traseraagg").val(),
 		'estado':'1'
-}	,'../controller/subcategoriesController.php').then(function(result){
+}	,'../controller/especialistaController.php').then(function(result){
 	if(result=="1"){
 		alert_success();
 		ver_registros();
-		$("#nombreagg").val("");
-		$("#descriptionagg").val("");
-		$("#valor_minagg").val("");
-		$("#id_categoriesagg").val("");
+		$("#fotoagg").val("");
+		$("#nombre_completoagg").val("");
+		$("#telefonoagg").val("");
+		$("#correoagg").val("");
+		$("#categories_selectedagg").val("");
+		$("#anio_experienciaagg").val("");
+		$("#metodos_pagoagg").val("");
+		$("#carteraagg").val("");
+		$("#antecedentesagg").val("");
+		$("#cedula_frontalagg").val("");
+		$("#cedula_traseraagg").val("");
+		$("#id_usuariosagg").val("");
 	}
 	}).catch(function(error) {console.log('Error:', error);});
 }
@@ -27,7 +43,7 @@ function ver_registros(){
 	table.destroy();
 	var result = function_ajax({
 		'op':'buscar'
-}	,'../controller/subcategoriesController.php').then(function(result){
+}	,'../controller/especialistaController.php').then(function(result){
 	$("#datos").html(result);
 	$('#datatable-buttons').DataTable( {
 		dom: 'Bfrtip',
@@ -48,7 +64,7 @@ function cambiar_estado(id, estado){
 		'op':'cambiar_estado',
 		'id': id,
 		'estado':estado
-}	,'../controller/subcategoriesController.php').then(function(result){
+}	,'../controller/especialistaController.php').then(function(result){
 	if(result=="1"){
 		alert_success_status();
 	}
@@ -70,7 +86,7 @@ function eliminar( id ){
 			var result = function_ajax({
 				'op':'eliminar',
 				'id': id
-}			,'../controller/subcategoriesController.php').then(function(result){
+}			,'../controller/especialistaController.php').then(function(result){
 			if(result=="1"){
 				ver_registros();
 				Swal.fire("Eliminado!", "La registro fue eliminado.", "success");
@@ -80,20 +96,36 @@ function eliminar( id ){
 	});
 }
 
-function cargar_datos(id_subcategories,nombre,description,valor_min,id_categories){
-	$("#id").val(id_subcategories);
-	$("#nombre").val(nombre);
-	$("#description").val(description);
-	$("#valor_min").val(valor_min);
-	$("#id_categories").val(id_categories);
+function cargar_datos(id_especialista,id_usuarios,foto,nombre_completo,telefono,correo,categories_selected,anio_experiencia,metodos_pago,cartera,antecedentes,cedula_frontal,cedula_trasera){
+	$("#id").val(id_especialista);
+	$("#foto").val(foto);
+	$("#nombre_completo").val(nombre_completo);
+	$("#telefono").val(telefono);
+	$("#correo").val(correo);
+	$("#categories_selected").val(categories_selected);
+	$("#anio_experiencia").val(anio_experiencia);
+	$("#metodos_pago").val(metodos_pago);
+	$("#cartera").val(cartera);
+	$("#antecedentes").val(antecedentes);
+	$("#cedula_frontal").val(cedula_frontal);
+	$("#cedula_trasera").val(cedula_trasera);
+	$("#id_usuarios").val(id_usuarios);
 }
 
 function modificar(){
 	var id =  $("#id").val();
-	var categories =  $("#id_categories").val();
-	var nombre =  $("#nombre").val();
-	var description =  $("#description").val();
-	var valor_min =  $("#valor_min").val();
+	var usuarios =  $("#id_usuarios").val();
+	var foto =  $("#foto").val();
+	var nombre_completo =  $("#nombre_completo").val();
+	var telefono =  $("#telefono").val();
+	var correo =  $("#correo").val();
+	var categories_selected =  $("#categories_selected").val();
+	var anio_experiencia =  $("#anio_experiencia").val();
+	var metodos_pago =  $("#metodos_pago").val();
+	var cartera =  $("#cartera").val();
+	var antecedentes =  $("#antecedentes").val();
+	var cedula_frontal =  $("#cedula_frontal").val();
+	var cedula_trasera =  $("#cedula_trasera").val();
 	Swal.fire({
 		title: "Estas seguro de modificar este registro?",
 		text: "seleccione las siguentes opciones para continuar!",
@@ -108,11 +140,19 @@ function modificar(){
 			var result = function_ajax({
 				'op':'modificar',
 				'id': id,
-				'categories': id_categories,
-				'nombre': nombre,
-				'description': description,
-				'valor_min': valor_min,
-			},'../controller/subcategoriesController.php').then(function(result){
+				'usuarios': id_usuarios,
+				'foto': foto,
+				'nombre_completo': nombre_completo,
+				'telefono': telefono,
+				'correo': correo,
+				'categories_selected': categories_selected,
+				'anio_experiencia': anio_experiencia,
+				'metodos_pago': metodos_pago,
+				'cartera': cartera,
+				'antecedentes': antecedentes,
+				'cedula_frontal': cedula_frontal,
+				'cedula_trasera': cedula_trasera,
+			},'../controller/especialistaController.php').then(function(result){
 			if(result=="1"){
 				ver_registros();
 				Swal.fire("Modificado!", "El registro fue modificado.", "success");

@@ -20,68 +20,66 @@ if(isset($_GET['view'])){
         <li class="menu-title">Menú</li>
 
         <li>
-            <a href="home.php?" class="waves-effect <?php if($valor == "dashboard") { echo "active mm-active"; } ?>">
-                <i class="mdi mdi-table-large"></i>
+            <a href="home.php?" class="waves-effect <?php if($valor == 'dashboard') echo 'active mm-active'; ?>">
+                <i class="mdi mdi-view-dashboard"></i>
                 <span>Panel Administrativo</span>
             </a>
         </li>
 
         <li>
-            <a href="home.php?view=usuarios" class="waves-effect <?php if($valor == "usuarios") { echo "active mm-active"; } ?>">
-                <i class="mdi mdi-account"></i>
+            <a href="home.php?view=usuarios" class="waves-effect <?php if($valor == 'usuarios') echo 'active mm-active'; ?>">
+                <i class="mdi mdi-account-multiple"></i>
                 <span>Usuarios</span>
             </a>
         </li>
+
         <li>
-            <a href="home.php?view=configuracion" class="waves-effect <?php if($valor == "configuracion") { echo "active mm-active"; } ?>">
-                <i class="fas fa-fw fa-cog"></i>
+            <a href="home.php?view=configuracion" class="waves-effect <?php if($valor == 'configuracion') echo 'active mm-active'; ?>">
+                <i class="mdi mdi-cog"></i>
                 <span>Configuración</span>
             </a>
         </li>
 
-        
-        <!-- Dropdown for Producto -->
-   
-
- 
-        <li style="display: none;">
-            <a href="home.php?view=logs" class="waves-effect <?php if($valor == 'logs') { echo 'active mm-active'; } ?>">
-                <i class="fas fa-fw fa-book"></i>
-                <span>Logs</span>
-            </a>
-        </li>
         <li>
-            <a href="home.php?view=notificaciones" class="waves-effect <?php if($valor == 'notificaciones') { echo 'active mm-active'; } ?>">
-                <i class="fas fa-fw fa-bell"></i>
+            <a href="home.php?view=notificaciones" class="waves-effect <?php if($valor == 'notificaciones') echo 'active mm-active'; ?>">
+                <i class="mdi mdi-bell-ring"></i>
                 <span>Notificaciones</span>
             </a>
         </li>
-       
-	<li>
-		 <a href="home.php?view=payments" class=" waves-effect <?php if($valor=="payments"){ echo "active mm-active"; } ?>">
-			<i class="fas fa-fw fa-wrench"></i>
-			<span>payments</span>
-		</a>
-	</li>
-	<li>
-		 <a href="home.php?view=categories" class=" waves-effect <?php if($valor=="categories"){ echo "active mm-active"; } ?>">
-			<i class="fas fa-fw fa-wrench"></i>
-			<span>categories</span>
-		</a>
-	</li>
-	<li>
-		 <a href="home.php?view=subcategories" class=" waves-effect <?php if($valor=="subcategories"){ echo "active mm-active"; } ?>">
-			<i class="fas fa-fw fa-wrench"></i>
-			<span>subcategories</span>
-		</a>
-	</li>
-	<li>
-		 <a href="home.php?view=chat" class=" waves-effect <?php if($valor=="chat"){ echo "active mm-active"; } ?>">
-			<i class="fas fa-fw fa-wrench"></i>
-			<span>chat</span>
-		</a>
-	</li>
-<!--construir-->
-	<li>
+
+        <li>
+            <a href="home.php?view=payments" class="waves-effect <?php if($valor == 'payments') echo 'active mm-active'; ?>">
+                <i class="mdi mdi-credit-card-outline"></i>
+                <span>Métodos de pago</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="home.php?view=categories" class="waves-effect <?php if($valor == 'categories') echo 'active mm-active'; ?>">
+                <i class="mdi mdi-shape-outline"></i>
+                <span>Categorías</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="home.php?view=subcategories" class="waves-effect <?php if($valor == 'subcategories') echo 'active mm-active'; ?>">
+                <i class="mdi mdi-shape-plus-outline"></i>
+                <span>Sub-categorías</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="home.php?view=especialista" class="waves-effect <?php if($valor == 'especialista') echo 'active mm-active'; ?>">
+                <i class="mdi mdi-account-tie-outline"></i>
+                <span>Especialista</span>
+            </a>
+        </li>
+
+        <li style="display: none;">
+            <a href="home.php?view=logs" class="waves-effect <?php if($valor == 'logs') echo 'active mm-active'; ?>">
+                <i class="mdi mdi-book-open-variant"></i>
+                <span>Logs</span>
+            </a>
+        </li>
     </ul>
 </div>

@@ -62,7 +62,7 @@ $n_notificacion -> registrar_notificacion('Registro subcategories', 'subcategori
 			<td><?= $key['id_subcategories']; ?></td>
 			<td><?= $key['nombre']; ?></td>
 			<td><?= $key['description']; ?></td>
-			<td><?= $key['valor_min']; ?></td>
+			<td>$<?= $key['valor_min']; ?></td>
 			<td><?php include '../view/static/bt_estado.php';  ?></td>
 			<td>
 				<div class="dropdown">
@@ -71,7 +71,7 @@ $n_notificacion -> registrar_notificacion('Registro subcategories', 'subcategori
 						<i class="mdi mdi-chevron-down"></i>
 						</button>
 						<div class="dropdown-menu" aria-labelledby="dropdownMenuButton1" style="margin: 0px;">
-							<a class="dropdown-item" href="#"  data-bs-toggle="modal" data-bs-target="#myModal" onclick="cargar_datos(<?php echo "'".$key['id_subcategories']."','".$key['nombre']."','".$key['description']."','".$key['valor_min']."'"; ?>)">Modificar</a>
+							<a class="dropdown-item" href="#"  data-bs-toggle="modal" data-bs-target="#myModal" onclick="cargar_datos(<?php echo "'".$key['id_subcategories']."','".$key['nombre']."','".$key['description']."','".$key['valor_min']."','".$key['id_categories']."'"; ?>)">Modificar</a>
 							<a class="dropdown-item" href="#" onclick="eliminar(<?php echo $key['id_subcategories']; ?>)">Eliminar</a>
 						</div>
 					</div>

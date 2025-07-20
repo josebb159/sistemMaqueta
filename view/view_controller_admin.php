@@ -10,6 +10,7 @@ $views = [
 	"categories" => "categories.php",
 	"subcategories" => "subcategories.php",
 	"chat" => "chat.php",
+	"especialista" => "especialista.php",
 /*construir*/
 ];
 

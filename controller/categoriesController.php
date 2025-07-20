@@ -2,6 +2,7 @@
 include 'generalErrorController.php';
 include '../model/categories.php';
 include '../model/notificacion.php';
+include '../model/subcategories.php';
 
 $n_notificacion = new notificacion();
 session_start();
@@ -38,6 +39,7 @@ $n_notificacion -> registrar_notificacion('Registro categories', 'categories '.$
 	case 'buscar':
 		$n_categories  = new categories();
 		$resultado = $n_categories  -> buscar_categories();
+
 		if($resultado==0){
 			exit();
 		}
@@ -47,12 +49,24 @@ $n_notificacion -> registrar_notificacion('Registro categories', 'categories '.$
 			}else{
 				$st = '';
 			}
+
+
+				$n_subcategories  = new subcategories();
+				$resultado_subcategories = $n_subcategories  -> buscar_subcategories($key['id_categories']);
+				$badge = '';
+				if ($resultado_subcategories) {
+					foreach ($resultado_subcategories as $subcat) {
+						$badge.= '<span class="badge bg-primary me-1">' . htmlspecialchars($subcat['nombre']) . '</span>';
+					}
+				}
+
 		$key['id']=$key['id_categories'];
 		?>
 		<tr>
 			<td><?= $key['id_categories']; ?></td>
 			<td><?= $key['nombre']; ?></td>
 			<td><?= $key['description']; ?></td>
+			<td><?= $badge; ?></td>
 			<td><?php include '../view/static/bt_estado.php';  ?></td>
 			<td>
 				<div class="dropdown">
@@ -62,7 +76,9 @@ $n_notificacion -> registrar_notificacion('Registro categories', 'categories '.$
 						</button>
 						<div class="dropdown-menu" aria-labelledby="dropdownMenuButton1" style="margin: 0px;">
 							<a class="dropdown-item" href="#"  data-bs-toggle="modal" data-bs-target="#myModal" onclick="cargar_datos(<?php echo "'".$key['id_categories']."','".$key['nombre']."','".$key['description']."'"; ?>)">Modificar</a>
-							<a class="dropdown-item" href="#" onclick="eliminar(<?php echo $key['id_categories']; ?>)">Eliminar</a>
+							 <?php if($badge==''){ ?>
+								<a class="dropdown-item" href="#" onclick="eliminar(<?php echo $key['id_categories']; ?>)">Eliminar</a>
+							<?php } ?>
 						</div>
 					</div>
 			</td>

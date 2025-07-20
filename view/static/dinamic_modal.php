@@ -29,7 +29,7 @@ function generate_modal($name, $content, $size, $id, $hiddeValues, $form, $type)
 							<?php } ?>	
                             <?php foreach ($content as $data) { 
                                 
-                            if($data['type'] == "text" || $data['type'] == "password") {   
+							if($data['type'] == "text" || $data['type'] == "password" || $data['type'] == "email" || $data['type'] == "number" || $data['type'] == "date"){
                             ?>
                             <div style="display: <?= $data['display']; ?>;" class="col-md-<?= $data['col']; ?>">
 								<div class="mb-6">
@@ -44,6 +44,34 @@ function generate_modal($name, $content, $size, $id, $hiddeValues, $form, $type)
 									    <label for="validationCustom01" class="form-label"><?= $data['name']; ?></label>
                                         <select  name="<?= $data['id']; ?>" class="form-control" id="<?= $data['id']; ?>" <?= $data['action']; ?>>
                                         </select>
+                                    </div>
+                                </div>
+                 
+							<?php }else if($data['type'] == "select_foraneal"){  
+								
+									$conect = 1;
+								if($data['db'] == 1){
+
+								}else{
+									include '../model/' . $data['class'] . '.php';
+								}
+			
+								$n_model = new $data['class']();
+								$method = 'buscar_' . $data['class'];
+								$values = $n_model->$method();
+								?>
+                                <div style="display: <?= $data['display']; ?>;" class="col-md-<?= $data['col']; ?>">
+								    <div class="mb-6">
+									    <label for="validationCustom01" class="form-label"><?= $data['name']; ?></label>
+                                        <select  name="<?= $data['id']; ?>" class="form-control" id="<?= $data['id']; ?>" <?= $data['action']; ?>>
+										<?php
+										foreach ($values as $key) {
+											?>
+												<option value="<?php echo $key['id_'.$data['class']]; ?>"><?php echo $key[$data['cam_foraneal']]; ?></option>
+											<?php
+											}?>
+
+										</select>
                                     </div>
                                 </div>
                             <?php }  ?>
