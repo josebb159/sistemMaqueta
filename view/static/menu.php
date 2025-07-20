@@ -75,6 +75,12 @@ if(isset($_GET['view'])){
 			<span>subcategories</span>
 		</a>
 	</li>
+	<li>
+		 <a href="home.php?view=chat" class=" waves-effect <?php if($valor=="chat"){ echo "active mm-active"; } ?>">
+			<i class="fas fa-fw fa-wrench"></i>
+			<span>chat</span>
+		</a>
+	</li>
 <!--construir-->
 	<li>
     </ul>

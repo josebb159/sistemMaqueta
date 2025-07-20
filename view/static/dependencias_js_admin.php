@@ -8,6 +8,7 @@ $scripts = [
 	"payments" => "payments.js",
 	"categories" => "categories.js",
 	"subcategories" => "subcategories.js",
+	"chat" => "chat.js",
 /*construir*/
 ];
 
