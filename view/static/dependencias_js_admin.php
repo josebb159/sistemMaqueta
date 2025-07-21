@@ -10,6 +10,7 @@ $scripts = [
 	"subcategories" => "subcategories.js",
 	"chat" => "chat.js",
 	"especialista" => "especialista.js",
+	"servicios" => "servicios.js",
 /*construir*/
 ];
 

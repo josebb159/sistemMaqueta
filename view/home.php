@@ -206,7 +206,7 @@ $list_notificacion = $n_notificacion->buscar_notificaciones();
                                 <div class="p-2 border-top">
                                     <div class="d-grid">
                                         <a class="btn btn-sm btn-link font-size-14 text-center" href="home.php?view=notificaciones">
-                                            <i class="mdi mdi-arrow-right-circle me-1"></i> View More..
+                                            <i class="mdi mdi-arrow-right-circle me-1"></i> Ver mas..
                                         </a>
                                     </div>
                                 </div>

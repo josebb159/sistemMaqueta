@@ -81,5 +81,12 @@ if(isset($_GET['view'])){
                 <span>Logs</span>
             </a>
         </li>
+        <li> 
+            <a href="home.php?view=servicios" class=" waves-effect <?php if($valor=="servicios"){ echo "active mm-active"; } ?>">
+			<i class="mdi mdi-briefcase-outline"></i>
+			<span>Servicios</span>
+		    </a>
+        </li>
+    <!--construir-->
     </ul>
 </div>

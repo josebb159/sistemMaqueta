@@ -18,21 +18,21 @@
 			<div class="col-12">
 				<div class="card">
 					<div class="card-body">
-						<h4 class="card-title">especialista</h4>
+						<h4 class="card-title">Especialista</h4>
 						<table id="datatable-buttons" class="table table-striped table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
 							<thead>
 								<th>ID</th>
-								<th>foto</th>
-								<th>nombre_completo</th>
-								<th>telefono</th>
-								<th>correo</th>
-								<th>categories_selected</th>
-								<th>anio_experiencia</th>
-								<th>metodos_pago</th>
-								<th>cartera</th>
-								<th>antecedentes</th>
-								<th>cedula_frontal</th>
-								<th>cedula_trasera</th>
+								<th>Foto</th>
+								<th>Nombre completo</th>
+								<th>Teléfono</th>
+								<th>Correo</th>
+								<th>Categorias</th>
+								<th>Años experiencia</th>
+								<th>Metodos pago</th>
+								<th>Cartera</th>
+								<th>Antecedentes</th>
+								<th>Cédula frontal</th>
+								<th>Cédula trasera</th>
 								<th>Estado</th>
 								<th>Opciones</th>
 							<thead>

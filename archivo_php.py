@@ -1,1 +1,1 @@
-php_files = ['api.php', 'categories.php', 'chat.php', 'configuracion.php', 'database.php', 'db.php', 'error.php', 'especialista.php', 'logs.php', 'myaccount.php', 'notificacion.php', 'payments.php', 'subcategories.php', 'usuario.php']
+php_files = ['api.php', 'categories.php', 'chat.php', 'configuracion.php', 'database.php', 'db.php', 'error.php', 'especialista.php', 'logs.php', 'myaccount.php', 'notificacion.php', 'payments.php', 'servicios.php', 'subcategories.php', 'usuario.php']
